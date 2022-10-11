@@ -55,7 +55,7 @@ ROOT_URLCONF = 'chatproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [BASE_DIR/'chat'/'templates'/'chat'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

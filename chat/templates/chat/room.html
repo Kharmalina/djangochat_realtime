@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'room/room.css' %}">
+
+  <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <h2 class="room-name">{{room}}</h2>
+
+  <!-- <div id="no-messages" style="border-radius: 10px;">
+
+  </div> -->
+
+  <div id="display">
+
+  </div>
+  <script>
+  //       if ($('#display').children('div').length == 0) {
+  //       console.log('boo')
+  //     $("#display").append('<h2>Be the first one to chat at {{room}}!</h2>');
+  // } else if ($('#display').children('div').length == 1){
+  //   console.log('heyy')
+  //   $("#no-messages").empty()
+  // }
+    $(document).ready(function(){
+
+
+      renderTimestamp = timestamp => {
+          let prefix = ''; 
+          const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000);
+          if (timeDiff <= 1) { // less than one minute ago
+              prefix = 'just now...';
+          } else if (timeDiff < 60 && timeDiff > 1) { // less than sixty minutes ago
+              prefix = `${timeDiff} minutes ago`;
+          } else if (timeDiff < 2*60 && timeDiff >= 60) { // less than 2 hours ago
+              prefix = `${Math.round(timeDiff/60)} hour ago`;
+          } else if (timeDiff < 24*60 && timeDiff >= 120) { // greater than 2 hours and less than 24 hours ago
+              prefix = `${Math.round(timeDiff/60)} hours ago`;
+          } else if (timeDiff < 31*24*60 && timeDiff > 24*60) { // less than 31 days ago
+              prefix = `${Math.round(timeDiff/(60*24))} days ago`;
+          } else {
+              prefix = `${new Date(timestamp)}`;
+          }
+          return prefix
+      }
+      
+      setInterval(function(){
+        $.ajax({
+            type: 'GET',
+            url : "/getMessages/{{room}}/",
+            success: function(response){
+                // console.log(response);
+                $("#display").empty();
+                for (var key in response.messages)
+                {
+                    let incoming_message = "<div class='container darker'><b>" + response.messages[key].user + "</b><p>"+response.messages[key].value + "</p><span class='time-left'>"+ renderTimestamp(response.messages[key].timestamp) + "</span></div>";
+                    $("#display").append(incoming_message);
+                }
+            },
+            error: function(response){
+                alert('An error occured')
+            }
+          });
+        },1000);
+      })
+
+  //   if ($('#display').children('div').length > 0) {
+  //     $("#no-messages").append('<h2>Be the first one to chat at {{room}}!</h2>');
+  // }
+
+    // if (!($("#display").children().length > 0 && $(".container").children().length > 0)) {
+    //   console.log("hi")
+    //     $("#no-messages").append("<h2>Be the first to chat in {{room}}!</h2>");
+    //     // clearInterval(variable);
+    //   } 
+      // if (($("#display").children().length > 0)){
+      //   console.log("boo")
+      //   $("#no-messages").empty();
+      //   }
+
+  </script>
+
+
+  <div class="form">
+    <form id="post-form">
+        {% csrf_token %}
+        <input type="hidden" name="username" id="username" value="{{username}}" required/>
+        <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}" required/>
+        <input type="text" name="message" id="message" width="100px" required />
+        <input type="submit" value="Send" id="submit" />
+        <!-- <input type="submit" value="Back" id="back" /> -->
+    </form>
+  </div>
+
+
+</body>
+
+<script type="text/javascript">
+  $(document).on('submit','#post-form',function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url:'/send',
+      data:{
+          username:$('#username').val(),
+          room_id:$('#room_id').val(),
+          message:$('#message').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+         //alert(data)
+      }
+    });
+    document.getElementById('message').value = ''
+  });
+</script>
+
+</html>
