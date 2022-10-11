@@ -71,6 +71,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatproject.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = ['https://djangochatrealtime-production.up.railway.app/']
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
