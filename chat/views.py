@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request):
     return render(request, 'home.html')
 
-@csrf_exempt
 def room(request, room):
     username = request.GET.get('username')
     room_details = Room.objects.get(name=room)
