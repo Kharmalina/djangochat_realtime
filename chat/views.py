@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from chat.models import Room, Message
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import requires_csrf_token
 # Create your views here.
 
 def home(request):
@@ -15,6 +16,7 @@ def room(request, room):
         'room_details': room_details
     })
 
+requires_csrf_token
 def checkview(request):
     room = request.POST['room_name']
     username = request.POST['username']
