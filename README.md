@@ -9,9 +9,11 @@ This application is built with the following:
 3. jQuery
 4. CSS
 
-Features
+## Features
     - Choose a room name and chat with multiple people or one on one (as long as room name is the same)
     - Accurate realtime timestamps of messages 
+
+## Installation
 
 How to locally develop:
 
@@ -29,5 +31,5 @@ How to locally develop:
         - python manage.py migrate
         - python manage.py runserver 
 
-While using Chatify:
+## While using Chatify
     - make sure the Room Name is spelled correctly - if not you will be in the wrong room

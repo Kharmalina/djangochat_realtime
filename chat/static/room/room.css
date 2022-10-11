@@ -18,6 +18,7 @@ body {
   .darker {
     border-color: #ccc;
     background-color: #ddd;
+    /* font-size: 1.1rem; */
   }
   
   /* for each individual message */
@@ -58,7 +59,7 @@ body {
   .room-name {
     text-align: center;
     text-decoration: underline;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   
   /* #display {
@@ -85,7 +86,7 @@ body {
     width: 100%;
     min-height: 400px;
     max-height: 400px;
-    background-color: rgb(255, 255, 255);
+    background-color: #f1f1f1;
     box-shadow: 5px 5px 5px #47464867;
     border-radius: 10px;
   }
@@ -124,8 +125,10 @@ body {
     background-color: #c6770f;
     }
 
-    div {
-    /* border-radius: 10px; */
+    #intro-message{
     background-color: #f2f2f2;
     padding: 20px;
+    border-radius: 10px; 
+    text-align: center; 
+    margin-bottom: 0.7rem;
     }

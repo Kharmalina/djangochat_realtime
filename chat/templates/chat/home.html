@@ -3,7 +3,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% load static %}
-<link rel="stylesheet" href="{% static 'home/home.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'home/home.css' %}"> -->
+<link rel="stylesheet" href="/static/home/home.css?{% now 'U' %}"/>
 <link href='https://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
 
 
@@ -15,7 +16,7 @@
     <p>Welcome to Chatify, a public chat application to talk to anyone anywhere! The following are the rules:</p>
     <ul>
       <li>
-        Please be respecful of those using this platform
+        Please be respectful of those using this platform
       </li>
       <li>
         Never share personal information 
@@ -31,14 +32,17 @@
 
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
-        <label style="font-size:1.5rem;">Room Name</label>
-        <input style="font-size:1.5rem;" type="text" name="room_name" id="room_name" width="100px" required />
-        <label style="font-size:1.5rem;">Username</label>
-        <input style="font-size:1.5rem;" type="text" name="username" id="username" width="100px" required />
+        <label style="font-size:1.3rem;">Room Name</label>
+        <input style="font-size:1.3rem;" type="text" name="room_name" id="room_name" width="100px" required />
+        <label style="font-size:1.3rem;">Username</label>
+        <input style="font-size:1.3rem;" type="text" name="username" id="username" width="100px" required />
         <input style="font-size:1.2rem; font-family: 'Gabriela';" type="submit" value="Enter Room">
     </form>
 </div>
 
+<footer>
+  Chatify &copy; 2022 Made with ❤️
+</footer>
 
 </body>
 
