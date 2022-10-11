@@ -71,7 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatproject.wsgi.application'
 
-CSRF_TRUSTED_ORIGINS = ['https://djangochatrealtime-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://djangochatrealtime-production.up.railway.app/', 'https://*.127.0.0.1']
 
 
 # Database
