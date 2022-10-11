@@ -16,7 +16,7 @@ def room(request, room):
         'room_details': room_details
     })
 
-requires_csrf_token
+@requires_csrf_token
 def checkview(request):
     room = request.POST['room_name']
     username = request.POST['username']
