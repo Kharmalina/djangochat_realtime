@@ -4,12 +4,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% load static %}
 <link rel="stylesheet" href="{% static 'home/home.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+
 
 </head>
 <body>
 
 <div align="center" id="title">
-    <h2>Chatify: Simply chat!</h2>
+    <h1>Chatify 💬 </h1>    
+    <p>Welcome to Chatify, a public chat application to talk to anyone anywhere! The following are the rules:</p>
+    <ul>
+      <li>
+        Please be respecful of those using this platform
+      </li>
+      <li>
+        Never share personal information 
+      </li>
+      <li>
+        Have fun!
+      </li>
+    </ul>
 </div>
 
 
@@ -17,11 +31,11 @@
 
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
-        <label>Room Name</label>
-        <input type="text" name="room_name" id="room_name" width="100px" required />
-        <label>Username</label>
-        <input type="text" name="username" id="username" width="100px" required />
-        <input type="submit" value="Enter Room">
+        <label style="font-size:1.5rem;">Room Name</label>
+        <input style="font-size:1.5rem;" type="text" name="room_name" id="room_name" width="100px" required />
+        <label style="font-size:1.5rem;">Username</label>
+        <input style="font-size:1.5rem;" type="text" name="username" id="username" width="100px" required />
+        <input style="font-size:1.2rem; font-family: 'Gabriela';" type="submit" value="Enter Room">
     </form>
 </div>
 

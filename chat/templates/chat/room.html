@@ -3,8 +3,9 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% load static %}
+  <!-- <link href='https://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'> -->
   <link rel="stylesheet" href="{% static 'room/room.css' %}">
-
+  <link href='https://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
   <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 </head>
 
@@ -12,21 +13,14 @@
 
   <h2 class="room-name">{{room}}</h2>
 
-  <!-- <div id="no-messages" style="border-radius: 10px;">
-
-  </div> -->
+  <div id="intro-message" style="border-radius: 10px; text-align: center; margin-bottom: 0.7rem;">
+    <h2>Welcome to {{room}}!</h2>
+  </div>
 
   <div id="display">
 
   </div>
   <script>
-  //       if ($('#display').children('div').length == 0) {
-  //       console.log('boo')
-  //     $("#display").append('<h2>Be the first one to chat at {{room}}!</h2>');
-  // } else if ($('#display').children('div').length == 1){
-  //   console.log('heyy')
-  //   $("#no-messages").empty()
-  // }
     $(document).ready(function(){
 
 
@@ -37,9 +31,7 @@
               prefix = 'just now...';
           } else if (timeDiff < 60 && timeDiff > 1) { // less than sixty minutes ago
               prefix = `${timeDiff} minutes ago`;
-          } else if (timeDiff < 2*60 && timeDiff >= 60) { // less than 2 hours ago
-              prefix = `${Math.round(timeDiff/60)} hour ago`;
-          } else if (timeDiff < 24*60 && timeDiff >= 120) { // greater than 2 hours and less than 24 hours ago
+          } else if (timeDiff < 24*60 && timeDiff >= 60) { // greater than 1 hour and less than 24 hours ago
               prefix = `${Math.round(timeDiff/60)} hours ago`;
           } else if (timeDiff < 31*24*60 && timeDiff > 24*60) { // less than 31 days ago
               prefix = `${Math.round(timeDiff/(60*24))} days ago`;
@@ -68,33 +60,22 @@
           });
         },1000);
       })
-
-  //   if ($('#display').children('div').length > 0) {
-  //     $("#no-messages").append('<h2>Be the first one to chat at {{room}}!</h2>');
-  // }
-
-    // if (!($("#display").children().length > 0 && $(".container").children().length > 0)) {
-    //   console.log("hi")
-    //     $("#no-messages").append("<h2>Be the first to chat in {{room}}!</h2>");
-    //     // clearInterval(variable);
-    //   } 
-      // if (($("#display").children().length > 0)){
-      //   console.log("boo")
-      //   $("#no-messages").empty();
-      //   }
-
+        setTimeout(function(){
+          let msg = document.getElementById('intro-message');
+          msg.parentNode.removeChild(msg);
+        }, 7000)
   </script>
 
 
   <div class="form">
     <form id="post-form">
         {% csrf_token %}
-        <input type="hidden" name="username" id="username" value="{{username}}" required/>
-        <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}" required/>
-        <input type="text" name="message" id="message" width="100px" required />
-        <input type="submit" value="Send" id="submit" />
+        <input type="hidden" name="username" style="font-size:1.5rem;" id="username" value="{{username}}" required/>
+        <input type="hidden" name="room_id" style="font-size:1.5rem;" id="room_id" value="{{room_details.id}}" required/>
+        <input type="text" name="message" style="font-size:1.5rem;" id="message" width="100px" required />
+        <input type="submit" value="Send" style="font-size:1.5rem; font-family: 'Gabriela';" id="submit" />
         <!-- <input type="submit" value="Back" id="back" /> -->
-    </form>
+      </form>
   </div>
 
 

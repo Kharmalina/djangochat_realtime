@@ -3,6 +3,7 @@ body {
     max-width: 800px;
     padding: 0 20px;
     background-color: #bcb1a5;
+    font-family: 'Gabriela';
   }
   
   .container {
@@ -49,7 +50,7 @@ body {
   }
 
   html {
-    margin-top: 8rem;
+    margin-top: 5rem;
   }
 
   input[type=text], select {
@@ -85,4 +86,8 @@ body {
 
   #title, .container {
     box-shadow: 5px 5px 5px #3232328e;
+  }
+
+  #title {
+    list-style-position:inside;
   }
