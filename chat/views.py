@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from chat.models import Room, Message
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
 
-@csrf_protect
+@csrf_exempt
 def room(request, room):
     username = request.GET.get('username')
     room_details = Room.objects.get(name=room)
@@ -17,7 +17,7 @@ def room(request, room):
         'room_details': room_details
     })
 
-@csrf_protect
+@csrf_exempt
 def checkview(request):
     room = request.POST['room_name']
     username = request.POST['username']
