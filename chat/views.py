@@ -7,6 +7,7 @@ from django.views.decorators.csrf import requires_csrf_token
 def home(request):
     return render(request, 'home.html')
 
+@requires_csrf_token
 def room(request, room):
     username = request.GET.get('username')
     room_details = Room.objects.get(name=room)

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8swd1fke+x4_nx2vgw(d&qn*%zar4hmli!78-wtn4uk%v*jmt)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://djangochatrealtime-production.up.railway.app/"]
 
 
 # Application definition
