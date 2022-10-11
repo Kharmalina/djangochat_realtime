@@ -26,7 +26,7 @@ How to locally develop:
         - Virtual environment activated and ready to go!
 
     Within activated virtual env:
-        - pip install Django
+        - pip install -r requirements.txt 
         - python manage.py makemigrations
         - python manage.py migrate
         - python manage.py runserver 
